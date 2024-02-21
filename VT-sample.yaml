@@ -33,9 +33,16 @@ components:
         VTSearchURLResponse:
             type: object
             properties:
-                total_votes:
+                data:
                     type: array
-                    description: Total Votes on Virus Total
-                    malicious:
-                        type: number
-                        description: Total Evalution Percentage of Mailciou URL on VirusTotal
+                    items:
+                        type: object
+                        properties:
+                            attributes:
+                                type: object
+                                properties:
+                                    total_votes:
+                                        type: oject
+                                        malicious:
+                                            type: number
+                                            description: Total Evalution Percentage of Mailciou URL on VirusTotal
