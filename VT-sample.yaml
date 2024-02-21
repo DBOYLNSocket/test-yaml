@@ -1,62 +1,41 @@
 openapi: 3.0.0
 
 info:
-    title: Free IP API
-    description: A free IP lookup API
+    title: VirusTotal API
+    description: Using a Search Function on VirusTotal
     version: "v1"
 
 servers:
-    - url: https://freeipapi.com/api/
+  - url: https://www.virustotal.com/api/v3/
 
 paths:
-    /json/{ipaddress}:
+    /search:
         get:
-            operationId: lookupIpAddressGeolocation
-            summary: Lookup IP Address Geolocation information
+            operationId: URLSearchOnVirusTotal
+            summary: URL Search On VirusTotal's DB
             parameters:
-                - in: path
-                  name: ipaddress
+                - in: query
+                  name: url
                   schema:
                       type: string
                   required: true
-                  description: The ip address to lookup
+                  description: Inputed URL is Using as a query 
             responses:
                 "200":
-                    description: OK
+                    description: Recieved a VirusTotal's Response
                     content:
                         application/json:
                             schema:
-                                $ref: "#/components/schemas/lookupIpAddressGeolocationResponse"
-
+                                $ref: "#/components/schemas/VTSearchURLResponse"
+           
 components:
     schemas:
-        lookupIpAddressGeolocationResponse:
+        VTSearchURLResponse:
             type: object
             properties:
-                ipVersion:
-                    type: integer
-                    description: The IP address version
-                ipAddress:
-                    type: string
-                    description: The IP address
-                latitude:
-                    type: number
-                    description: The latutude
-                longitude:
-                    type: number
-                    description: The longitude
-                countryName:
-                    type: string
-                    description: The country
-                zipCode:
-                    type: string
-                    description: The zip code
-                cityName:
-                    type: string
-                    description: The city
-                regionName:
-                    type: string
-                    description: The region
-                continent:
-                    type: string
-                    description: The continent
+                total_votes:
+                    type: array
+                    description: Total Votes on Virus Total
+                    malicious:
+                        type: number
+                        description: Total Evalution Percentage of Mailciou URL on VirusTotal
