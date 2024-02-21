@@ -14,12 +14,12 @@ paths:
             operationId: URLSearchOnVirusTotal
             summary: URL Search On VirusTotal's DB
             parameters:
-                - in: query
-                  name: url
-                  schema:
-                      type: string
-                  required: true
-                  description: Inputed URL is Using as a query 
+            - name: url 
+                in: query
+                description: Inputed URL is Using as a query 
+                schema:
+                    type: string
+                required: true
             responses:
                 "200":
                     description: Recieved a VirusTotal's Response
