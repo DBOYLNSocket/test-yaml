@@ -1,48 +1,49 @@
 openapi: 3.0.0
 
 info:
-    title: VirusTotal API
-    description: Using a Search Function on VirusTotal
-    version: "v1"
+  title: VirusTotal API
+  description: Using a Search Function on VirusTotal
+  version: "v1"
 
 servers:
   - url: https://www.virustotal.com/api/v3/
 
+
 paths:
-    /search:
-        get:
-            operationId: URLSearchOnVirusTotal
-            summary: URL Search On VirusTotal's DB
-            parameters:
-            - name: url 
-                in: query
-                description: Inputed URL is Using as a query 
-                schema:
-                    type: string
-                required: true
-            responses:
-                "200":
-                    description: Recieved a VirusTotal's Response
-                    content:
-                        application/json:
-                            schema:
-                                $ref: "#/components/schemas/VTSearchURLResponse"
+  /search:
+      get:
+          operationId: URLSearchOnVirusTotal
+          summary: URL Search On VirusTotal's DB
+          parameters:
+            - in: query
+              name: url
+              description: Inputed URL is Using as a query 
+              schema:
+                type: string
+              required: true
+          responses:
+              "200":
+                  description: Recieved a VirusTotal's Response
+                  content:
+                      application/json:
+                          schema:
+                              $ref: "#/components/schemas/VTSearchURLResponse"
            
 components:
-    schemas:
-        VTSearchURLResponse:
-            type: object
-            properties:
-                data:
-                    type: array
-                    items:
-                        type: object
-                        properties:
-                            attributes:
-                                type: object
-                                properties:
-                                    total_votes:
-                                        type: oject
-                                        malicious:
-                                            type: number
-                                            description: Total Evalution Percentage of Mailciou URL on VirusTotal
+  schemas:
+      VTSearchURLResponse:
+          type: object
+          properties:
+              data:
+                  type: array
+                  items:
+                      type: object
+                      properties:
+                          attributes:
+                              type: object
+                              properties:
+                                  total_votes:
+                                      type: oject
+                                      malicious:
+                                          type: number
+                                          description: Total Evalution Percentage of Mailciou URL on VirusTotal
