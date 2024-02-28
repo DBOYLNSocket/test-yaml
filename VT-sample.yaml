@@ -10,12 +10,12 @@ servers:
 
 
 paths:
-  /search:
+  /search?query={url}:
       get:
           operationId: URLSearchOnVirusTotal
           summary: URL Search On VirusTotal's DB
           parameters:
-            - in: query
+            - in: path
               name: url
               description: Inputed URL is Using as a query 
               schema:
